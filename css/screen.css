@@ -34,6 +34,8 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-html-backgroundColor);
+  color: var(--global-html-color);
 }
 
 *,
@@ -43,6 +45,13 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*
@@ -131,22 +140,92 @@ body {
 /*
     Component: Robot
 */
-
 .c-robot {
+  max-width: 300px;
+  fill: var(--global-color-front);
+  width: 100%;
+  --c-robot-animation-duration: 0.75s;
+  --c-robot-animation-timing-function: ease-in-out;
+  --c-robot-animation-iteration-count: infinite;
+  --c-robot-animation-direction: alternate;
 }
 
 .c-robot__shadow {
+  fill: black;
+  opacity: 0.2;
 }
 
+.c-robot--css-anim #Shadow {
+  animation: shadowPulse var(--c-robot-animation-duration) var(--c-robot-animation-timing-function)
+    var(--c-robot-animation-iteration-count) var(--c-robot-animation-direction);
+  transform-origin: 50% 100%;
+}
+.c-robot--css-anim #Robot {
+  animation: robotHover var(--c-robot-animation-duration) var(--c-robot-animation-timing-function)
+    var(--c-robot-animation-iteration-count) var(--c-robot-animation-direction);
+  transform-origin: 50% 100%;
+}
 
+@keyframes shadowPulse {
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes robotHover {
+  0% {
+    transform: translateY(2.5%);
+  }
+  100% {
+    transform: translateY(-2.5%);
+  }
+}
 /*
     Component: Controls
 */
+.c-controls {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 16px;
+}
+
+.c-controls__list {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.c-controls__button {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.c-controls__button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.c-controls__button--pause {
+  padding: 4px;
+  height: 1.5rem;
+  width: 1.5rem;
+}
 
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
-
+.u-hide {
+  display: none;
+}
 /*------------------------------------*\
 #MEDIA
 \*------------------------------------*/
